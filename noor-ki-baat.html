@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نور کی بات | روزانہ اسلامی نصیحت</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f6faf7;
+    --surface: #ffffff;
+    --surface-2: #eef7f0;
+    --text: #16261d;
+    --text-dim: #55695d;
+    --border: #d7e8dc;
+    --green: #1f7a4d;
+    --green-dark: #145c39;
+    --green-soft: #e4f3e9;
+    --gold: #b7924a;
+    --shadow: 0 12px 28px -14px rgba(20, 92, 57, 0.25);
+    --radius: 18px;
+    --transition: 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  [data-theme="dark"]{
+    --bg: #0d1712;
+    --surface: #142219;
+    --surface-2: #182a1e;
+    --text: #eaf3ec;
+    --text-dim: #9db3a5;
+    --border: #23392c;
+    --green: #4cbd82;
+    --green-dark: #6fd39a;
+    --green-soft: #16281d;
+    --gold: #d7b872;
+    --shadow: 0 12px 28px -14px rgba(0,0,0,0.55);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family: 'Noto Nastaliq Urdu', serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height:100vh;
+    transition: background var(--transition), color var(--transition);
+    line-height: 2;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:
+      radial-gradient(circle at 10% 8%, rgba(31,122,77,0.08), transparent 40%),
+      radial-gradient(circle at 90% 15%, rgba(183,146,74,0.08), transparent 45%);
+    pointer-events:none; z-index:0;
+  }
+  .wrap{ position:relative; z-index:1; max-width: 780px; margin:0 auto; padding: 0 18px 70px; }
+
+  /* Navbar */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 20px 0;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-icon{
+    width:42px; height:42px; border-radius:50%;
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; color:#fff;
+    box-shadow: 0 6px 16px -6px rgba(20,92,57,0.5);
+  }
+  .logo-text{ font-size:22px; font-weight:700; color: var(--green-dark); }
+  .toggle-btn{
+    width:58px; height:32px; border-radius:30px;
+    background: var(--surface-2); border:1px solid var(--border);
+    position:relative; cursor:pointer; transition: background var(--transition);
+  }
+  .toggle-btn .knob{
+    position:absolute; top:3px; right:3px;
+    width:24px; height:24px; border-radius:50%;
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; transition: transform var(--transition);
+  }
+  [data-theme="dark"] .toggle-btn .knob{ transform: translateX(-26px); }
+
+  /* Hero */
+  .hero{ text-align:center; padding: 20px 0 10px; }
+  .hero h1{
+    font-size: clamp(26px, 6vw, 36px);
+    color: var(--green-dark); font-weight:700;
+  }
+  .hero p{ color: var(--text-dim); margin-top:8px; font-size:16px; }
+  .hero .date-badge{
+    display:inline-block; margin-top:14px; padding:6px 18px;
+    background: var(--surface-2); border:1px solid var(--border);
+    border-radius: 30px; font-size:13px; color: var(--green-dark); font-weight:600;
+  }
+
+  /* Divider - light geometric pattern */
+  .pattern-divider{
+    height: 22px; margin: 34px 0 0;
+    background-image: radial-gradient(circle, var(--gold) 1.6px, transparent 1.8px);
+    background-size: 20px 20px;
+    background-position: center;
+    opacity: 0.35;
+  }
+
+  /* Section */
+  .section{
+    margin-top: 32px;
+    opacity:0; transform: translateY(24px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .section:nth-of-type(1){ animation-delay: 0.05s; }
+  .section:nth-of-type(2){ animation-delay: 0.2s; }
+  .section:nth-of-type(3){ animation-delay: 0.35s; }
+  .section:nth-of-type(4){ animation-delay: 0.5s; }
+
+  .section-header{ display:flex; align-items:center; gap:10px; margin-bottom: 14px; }
+  .section-icon{
+    width:38px; height:38px; border-radius:12px;
+    background: var(--green-soft); color: var(--green-dark);
+    display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;
+  }
+  .section-title{ font-size:19px; font-weight:700; color: var(--text); }
+
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    position: relative;
+    overflow:hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background var(--transition), border var(--transition);
+  }
+  .card:hover{ transform: translateY(-3px); box-shadow: 0 18px 34px -16px rgba(20,92,57,0.35); }
+  .card::after{
+    content:"";
+    position:absolute; inset:0; pointer-events:none;
+    border-radius: var(--radius);
+    background:
+      linear-gradient(135deg, transparent 94%, var(--gold) 94.4%, transparent 95%),
+      linear-gradient(-135deg, transparent 94%, var(--gold) 94.4%, transparent 95%);
+    opacity:0.3;
+  }
+
+  /* Section 1: Daily lesson */
+  .lesson-text{ font-size:17px; color: var(--text); line-height:2.1; }
+
+  /* Section 2: Ayah */
+  .ayah-arabic{
+    font-family: 'Amiri', serif;
+    font-size: 26px; text-align:center; color: var(--green-dark);
+    line-height: 2.2; margin-bottom: 16px; direction: rtl;
+  }
+  .ayah-divider{
+    width: 60px; height: 2px; background: var(--gold); margin: 0 auto 16px; opacity:0.6;
+  }
+  .ayah-translation{ font-size:16px; color: var(--text-dim); text-align:center; }
+  .ayah-ref{
+    margin-top:14px; text-align:center; font-size:13px; color: var(--green);
+    font-weight:600;
+  }
+
+  /* Section 3: Quote */
+  .quote-card{ text-align:center; padding: 32px 24px; }
+  .quote-text{
+    font-family: 'Amiri', 'Noto Nastaliq Urdu', serif;
+    font-size: 23px; color: var(--green-dark); font-weight:700; line-height:2;
+  }
+  .quote-mark{ font-size:34px; color: var(--gold); opacity:0.5; display:block; }
+
+  /* Section 4: Azkar checklist */
+  .azkar-list{ list-style:none; }
+  .azkar-item{
+    display:flex; align-items:center; gap:14px;
+    padding: 14px 6px;
+    border-bottom: 1px solid var(--border);
+    cursor:pointer;
+    transition: background 0.25s ease;
+  }
+  .azkar-item:last-child{ border-bottom:none; }
+  .azkar-item:hover{ background: var(--surface-2); border-radius:10px; }
+  .azkar-check{
+    width:26px; height:26px; border-radius:8px;
+    border:2px solid var(--green); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; color:#fff; transition: background 0.25s ease, transform 0.2s ease;
+  }
+  .azkar-item.done .azkar-check{ background: var(--green); transform: scale(1.05); }
+  .azkar-item.done .azkar-check::after{ content:"✓"; }
+  .azkar-main{ flex:1; }
+  .azkar-arabic{ font-family:'Amiri', serif; font-size:19px; color: var(--text); }
+  .azkar-count{ font-size:12px; color: var(--text-dim); margin-top:3px; }
+  .azkar-item.done .azkar-arabic{ text-decoration: line-through; opacity:0.55; }
+
+  .progress-wrap{ margin-top:16px; }
+  .progress-bar{
+    height:8px; background: var(--surface-2); border-radius:20px; overflow:hidden;
+  }
+  .progress-fill{
+    height:100%; width:0%; background: linear-gradient(90deg, var(--green), var(--gold));
+    border-radius:20px; transition: width 0.5s ease;
+  }
+  .progress-label{ font-size:12px; color: var(--text-dim); margin-top:8px; text-align:center; }
+
+  footer{
+    text-align:center; margin-top: 55px; color: var(--text-dim); font-size:13px;
+  }
+  footer .footer-quote{ color: var(--green-dark); font-weight:600; margin-bottom:6px; }
+
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(24px);} to{opacity:1; transform:translateY(0);} }
+
+  @media (max-width: 480px){
+    .ayah-arabic{ font-size:22px; }
+    .quote-text{ font-size:20px; }
+    .card{ padding:18px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body data-theme="light">
+<div class="wrap">
+  <nav>
+    <div class="logo">
+      <div class="logo-icon">☾</div>
+      <div class="logo-text">نور کی بات</div>
+    </div>
+    <div class="toggle-btn" id="themeToggle" title="Dark/Light Mode"><div class="knob" id="themeKnob">☀️</div></div>
+  </nav>
+
+  <div class="hero">
+    <h1>روزانہ دل کو نور سے جوڑیں</h1>
+    <p>ایک منٹ کی نصیحت، ایک آیت، ایک سکون — ہر دن کے لیے</p>
+    <div class="date-badge" id="todayDate"></div>
+  </div>
+
+  <div class="pattern-divider"></div>
+
+  <!-- Section 1: Daily Lesson -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title">روز کا ۱ منٹ سبق</div>
+    </div>
+    <div class="card">
+      <p class="lesson-text">
+        زندگی میں سب سے بڑی دولت مال نہیں، بلکہ مطمئن دل ہے۔ جو شخص اللہ کی تقسیم پر راضی رہتا ہے، وہ ہر حال میں سکون پاتا ہے۔ آج بس اتنا کریں: جو کچھ آپ کے پاس ہے اس پر ایک بار دل سے شکر ادا کریں۔ یہی شکر آپ کے دن کو بدل دے گا۔
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 2: Today's Ayah -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🕌</div>
+      <div class="section-title">آج کی آیت</div>
+    </div>
+    <div class="card">
+      <div class="ayah-arabic">إِنَّ مَعَ الْعُسْرِ يُسْرًا</div>
+      <div class="ayah-divider"></div>
+      <p class="ayah-translation">بے شک تنگی کے ساتھ آسانی ہے۔</p>
+      <div class="ayah-ref">سورۃ الشرح، آیت ۶</div>
+    </div>
+  </div>
+
+  <!-- Section 3: Heart-soothing quote -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🤍</div>
+      <div class="section-title">دل کو سکون دینے والا قول</div>
+    </div>
+    <div class="card quote-card">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">جس دل میں اللہ کی یاد بس جائے، اُس دل میں کوئی خالی پن نہیں رہتا۔</p>
+      <span class="quote-mark" style="display:block; transform: rotate(180deg);">"</span>
+    </div>
+  </div>
+
+  <!-- Section 4: Morning Azkar -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">🌅</div>
+      <div class="section-title">صبح کے اذکار</div>
+    </div>
+    <div class="card">
+      <ul class="azkar-list" id="azkarList">
+        <li class="azkar-item" data-key="a1">
+          <div class="azkar-check"></div>
+          <div class="azkar-main">
+            <div class="azkar-arabic">أَسْتَغْفِرُ اللّٰهَ</div>
+            <div class="azkar-count">3 مرتبہ — استغفار</div>
+          </div>
+        </li>
+        <li class="azkar-item" data-key="a2">
+          <div class="azkar-check"></div>
+          <div class="azkar-main">
+            <div class="azkar-arabic">سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ</div>
+            <div class="azkar-count">100 مرتبہ — تسبیح</div>
+          </div>
+        </li>
+        <li class="azkar-item" data-key="a3">
+          <div class="azkar-check"></div>
+          <div class="azkar-main">
+            <div class="azkar-arabic">لَا إِلٰهَ إِلَّا اللّٰهُ وَحْدَهُ لَا شَرِيكَ لَهُ</div>
+            <div class="azkar-count">1 مرتبہ — کلمہ توحید</div>
+          </div>
+        </li>
+        <li class="azkar-item" data-key="a4">
+          <div class="azkar-check"></div>
+          <div class="azkar-main">
+            <div class="azkar-arabic">اَللّٰهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا</div>
+            <div class="azkar-count">1 مرتبہ — صبح کی دعا</div>
+          </div>
+        </li>
+        <li class="azkar-item" data-key="a5">
+          <div class="azkar-check"></div>
+          <div class="azkar-main">
+            <div class="azkar-arabic">اَللّٰهُمَّ صَلِّ عَلَى مُحَمَّدٍ</div>
+            <div class="azkar-count">10 مرتبہ — درود شریف</div>
+          </div>
+        </li>
+      </ul>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-label" id="progressLabel">0 / 5 مکمل</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-quote">"نور کی بات" — دل کے سکون کی طرف ایک قدم</div>
+    <div>روزانہ نیا سبق، نئی آیت، نیا سکون</div>
+  </footer>
+</div>
+
+<script>
+  // ---------- Theme toggle ----------
+  const themeToggle = document.getElementById("themeToggle");
+  const themeKnob = document.getElementById("themeKnob");
+  const body = document.body;
+
+  function applyTheme(theme){
+    body.setAttribute("data-theme", theme);
+    themeKnob.textContent = theme === "dark" ? "🌙" : "☀️";
+    localStorage.setItem("noor_theme", theme);
+  }
+  const savedTheme = localStorage.getItem("noor_theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  applyTheme(savedTheme);
+  themeToggle.addEventListener("click", () => {
+    const current = body.getAttribute("data-theme");
+    applyTheme(current === "dark" ? "light" : "dark");
+  });
+
+  // ---------- Today's date (Urdu-friendly) ----------
+  const todayDate = document.getElementById("todayDate");
+  const days = ["اتوار","پیر","منگل","بدھ","جمعرات","جمعہ","ہفتہ"];
+  const months = ["جنوری","فروری","مارچ","اپریل","مئی","جون","جولائی","اگست","ستمبر","اکتوبر","نومبر","دسمبر"];
+  const now = new Date();
+  todayDate.textContent = `${days[now.getDay()]}، ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+  // ---------- Azkar checklist with persistence (resets daily) ----------
+  const azkarItems = document.querySelectorAll(".azkar-item");
+  const progressFill = document.getElementById("progressFill");
+  const progressLabel = document.getElementById("progressLabel");
+  const todayKey = now.toISOString().slice(0,10);
+  const storageKey = "noor_azkar_" + todayKey;
+
+  function getDoneSet(){
+    try{ return new Set(JSON.parse(localStorage.getItem(storageKey)) || []); }
+    catch(e){ return new Set(); }
+  }
+  function saveDoneSet(set){
+    localStorage.setItem(storageKey, JSON.stringify([...set]));
+  }
+  function updateProgress(){
+    const done = getDoneSet();
+    const total = azkarItems.length;
+    const percent = Math.round((done.size / total) * 100);
+    progressFill.style.width = percent + "%";
+    progressLabel.textContent = `${done.size} / ${total} مکمل`;
+  }
+
+  azkarItems.forEach(item => {
+    const key = item.dataset.key;
+    const doneSet = getDoneSet();
+    if(doneSet.has(key)) item.classList.add("done");
+
+    item.addEventListener("click", () => {
+      const set = getDoneSet();
+      if(set.has(key)){ set.delete(key); item.classList.remove("done"); }
+      else{ set.add(key); item.classList.add("done"); }
+      saveDoneSet(set);
+      updateProgress();
+    });
+  });
+  updateProgress();
+</script>
+</body>
+</html>
